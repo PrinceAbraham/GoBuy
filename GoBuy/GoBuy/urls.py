@@ -23,5 +23,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     url(r'^add/', include('product.urls')),
-    url(r'^shop/', include('shop.urls', namespace='shopping_cart'))
+    url(r'^shop/', include('shop.urls', namespace='shopping_cart')),
+    url(r'^cart/', include('cart.urls', namespace='cart')),
+    url(r'^order-history/', include('orderhistory.urls'))
 ]

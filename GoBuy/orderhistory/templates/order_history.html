@@ -1,0 +1,28 @@
+{% include 'home.html' %}
+  {% block content %}
+  <div class="container">
+    <div class="row">
+      {% if orders %}
+        {% for order in orders %}
+          <div class="col-md-12">
+            <div class="col-md-12">
+              <h3>Order Number: {{order.order_number}}</h3>
+            </div>
+            {%for p in products%}
+              {%if forloop.parentloop.counter == forloop.counter%}
+                {%for pro in p%}
+                    <div class="col-md-12"><img class="" width="200" height="200" src="{{pro.image_url}}"/><h4 class="col-md-8">{{pro.name}}</h4></div>
+                {%endfor%}
+              {%endif%}
+            {%endfor%}
+          </div>
+          <div class="col-md-12">
+            Your Total: ${{order.total}}
+          </div>
+        {% endfor %}
+      {% else %}
+        You have no order history. Checkout our cool offers!
+      {%endif%}
+    </div>
+  </div>
+{% endblock %}

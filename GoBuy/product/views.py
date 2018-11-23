@@ -10,7 +10,6 @@ class HomePageView(TemplateView):
         categoryForm = CategoryForm
         categories = Category.objects.all()
         products = Product.objects.all()
-        categories = Category.objects.all()
         args = {'p_form': productForm, 'c_form': categoryForm, 'categories': categories, 'products': products}
         return render(request, 'product.html', args)
 
