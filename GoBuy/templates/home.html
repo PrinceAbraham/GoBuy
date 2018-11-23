@@ -1,0 +1,18 @@
+<!-- templates/home.html-->
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<b>GoBuy</b>
+{% if user.is_authenticated %}
+  <div class="username">Hi {{ user.username }}!</div>
+  <p><a href="{% url 'logout' %}">logout</a></p>
+{% else %}
+  <p>You are not logged in</p>
+  <p><a href="{% url 'login' %}">login</a></p>
+{% endif %}
+<div class="menu">
+  <div class="col-md"><span><a href="/add">Add</a></span> | <span><a href="/shop">Shop</a></span></div>
+</div>
+{% endblock %}
