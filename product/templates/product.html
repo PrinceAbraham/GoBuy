@@ -1,0 +1,62 @@
+{% include 'home.html' %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <form method="post" id="product-form" novalidate autocomplete="off">
+      <h3>Product</h3>
+      {% load crispy_forms_tags %}
+      {% csrf_token %}
+      {{p_form | crispy}}
+      <input class="btn btn-success" type="submit" name="product-form">
+    </form>
+  </div>
+  <!-- <div class="row">
+    <div class="row">
+      <label for="">Categories</label>
+    </div>
+    {% if categories %}
+    <ul>
+      {% for category in categories %}
+        <li>{{ category.name }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+  <div class="row">
+    <div class="row">
+      <label for="">Products</label>
+    </div>
+    {% if products %}
+    <ul>
+      {% for product in products %}
+        <li>{{ product.name }} ({{ product.slug }}) | ${{ product.price }} | {{ product.quantity }} counts</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div> -->
+</div>
+<div class="container t-pad">
+  <div class="row add-category">
+    <div>
+      <button class="btn btn-primary" onclick="addCategory()">Add Category</button>
+    </div>
+  </div>
+  <div class="row">
+    <form method="post" id="category-form" novalidate  autocomplete="off">
+      <h3>Category</h3>
+      {% load crispy_forms_tags %}
+      {% csrf_token %}
+      {{c_form | crispy}}
+      <button class="btn btn-secondary" onclick="window.reload()">Cancel</button>
+      <input class="btn btn-success" type="submit" name="category-form">
+    </form>
+  </div>
+</div>
+<script>
+  $('#category-form').hide();
+  function addCategory(){
+    $('#category-form').show();
+    $('.add-category').hide();
+  }
+</script>
+{% endblock %}
