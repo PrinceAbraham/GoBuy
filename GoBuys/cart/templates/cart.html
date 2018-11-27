@@ -1,0 +1,31 @@
+{% include 'home.html' %}
+  {% block content %}
+  <div class="container">
+    <div class="row">
+      {%if transactions%}
+      <div class="col-md-12">
+        Your Cart:
+      </div>
+      {% for t in transactions %}
+      <div class="md-4 product">
+        <div class="cancel"><a href="{% url 'cart:remove_from_cart' t.product.id %}"><i class="fas fa-trash-alt"></i></a></div>
+        <img src="{{t.product.image_url}}" width="200" height="200" />
+        <div class="col-md-12 bold">
+            {{ t.product.name }}
+        </div>
+        <div class="col-md-12">
+          ${{ t.product.price }}
+        </div>
+          <div class="col-md-12">
+            {{t.product.quantity}} remaining
+          </div>
+        </div>
+      {%endfor%}
+        <h3 class="col-md-12">Your total is: ${{total}}</h3>
+        <a href="{% url 'cart:place_order'%}"><button class="btn btn-success">Place Order</button></a>
+        {%else%}
+        <h3>Your cart is empty</h3>
+        {%endif%}
+    </div>
+  </div>
+{% endblock %}
